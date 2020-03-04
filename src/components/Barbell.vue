@@ -1,5 +1,5 @@
 <template>
-  <button @click="emitClick">
+  <button @click="emitClick" :disabled="isDisabled">
     <span>{{ text }}</span>
     {{ weight }}
   </button>
@@ -23,6 +23,10 @@ export default {
     text: {
       type: String,
       required: true
+    },
+    isDisabled: {
+      type: Boolean,
+      default: false
     }
   }
 };

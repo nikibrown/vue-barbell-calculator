@@ -16,10 +16,11 @@
           <ul class="barbells">
             <Barbell
               v-for="(barbell, key) in barbells"
-              :key="key"
-              :weight="barbell.weight"
-              :text="barbell.text"
               @click="addBarbellWeight(key)"
+              :disabled="barbell.isDisabled"
+              :key="key"
+              :text="barbell.text"
+              :weight="barbell.weight"
             />
           </ul>
         </div>
@@ -31,12 +32,12 @@
           <ul class="plates">
             <Plate
               v-for="(plate, key) in plates"
-              :key="key"
               :class="plate.bsClasses"
-              :weight="plate.weight"
-              :plateCount="plate.plateCount"
-              :isOnBarbell="plate.isOnBarbell"
               @click="addPlateWeight(key)"
+              :isOnBarbell="plate.isOnBarbell"
+              :key="key"
+              :plateCount="plate.plateCount"
+              :weight="plate.weight"
             />
           </ul>
         </div>
@@ -85,15 +86,18 @@ export default {
       barbells: [
         {
           weight: 45,
-          text: ""
+          text: "",
+          isDisabled: false
         },
         {
           weight: 35,
-          text: ""
+          text: "",
+          isDisabled: false
         },
         {
           weight: 15,
-          text: ""
+          text: "",
+          isDisabled: false
         }
       ],
 
@@ -178,9 +182,16 @@ export default {
   methods: {
     addBarbellWeight(key) {
       this.barbellSelected = true;
-      // disable selection of barbells once one is selected
       this.barbells[key].text += "💪";
+      this.disableBarbellButton();
       return (this.totalWeight += this.barbells[key].weight);
+    },
+
+    disableBarbellButton() {
+      console.log("disable buttns run");
+      this.barbells.forEach(barbell => {
+        barbell.isDisabled = true;
+      });
     },
 
     addPlateWeight(key) {
