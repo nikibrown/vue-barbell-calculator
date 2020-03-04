@@ -24,6 +24,10 @@ export default {
       type: String,
       required: true
     },
+    bsClasses: {
+      type: String,
+      default: "btn btn-barbell"
+    },
     isDisabled: {
       type: Boolean,
       default: false
@@ -31,3 +35,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+button:disabled {
+  opacity: 1;
+}
+</style>

@@ -16,6 +16,7 @@
           <ul class="barbells">
             <Barbell
               v-for="(barbell, key) in barbells"
+              :class="barbell.bsClasses"
               @click="addBarbellWeight(key)"
               :disabled="barbell.isDisabled"
               :key="key"
@@ -87,17 +88,20 @@ export default {
         {
           weight: 45,
           text: "",
-          isDisabled: false
+          isDisabled: false,
+          bsClasses: "btn btn-barbell btn-outline-dark barbell-45"
         },
         {
           weight: 35,
           text: "",
-          isDisabled: false
+          isDisabled: false,
+          bsClasses: "btn btn-barbell btn-outline-dark barbell-35"
         },
         {
           weight: 15,
           text: "",
-          isDisabled: false
+          isDisabled: false,
+          bsClasses: "btn btn-barbell btn-outline-dark barbell-15"
         }
       ],
 
