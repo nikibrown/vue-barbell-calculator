@@ -1,6 +1,6 @@
 <template>
   <button @click="emitClick" :disabled="isDisabled">
-    <span>{{ text }}</span>
+    <span v-html="text"></span>
     {{ weight }}
   </button>
 </template>
@@ -37,6 +37,9 @@ export default {
 </script>
 
 <style scoped>
+button span {
+  color: white;
+}
 button:disabled {
   opacity: 1;
 }

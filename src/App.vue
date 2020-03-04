@@ -45,7 +45,7 @@
 
         <div class="form-group">
           <h1>Total Weight: {{ totalWeight }}</h1>
-          <button @click="resetTotalWeight">Reset</button>
+          <button @click="resetTotalWeight" class="btn btn-danger">Reset</button>
         </div>
       </div>
     </main>
@@ -89,19 +89,19 @@ export default {
           weight: 45,
           text: "",
           isDisabled: false,
-          bsClasses: "btn btn-barbell btn-outline-dark barbell-45"
+          bsClasses: "btn btn-barbell btn-secondary barbell-45"
         },
         {
           weight: 35,
           text: "",
           isDisabled: false,
-          bsClasses: "btn btn-barbell btn-outline-dark barbell-35"
+          bsClasses: "btn btn-barbell btn-secondary barbell-35"
         },
         {
           weight: 15,
           text: "",
           isDisabled: false,
-          bsClasses: "btn btn-barbell btn-outline-dark barbell-15"
+          bsClasses: "btn btn-barbell btn-secondary barbell-15"
         }
       ],
 
@@ -186,7 +186,7 @@ export default {
   methods: {
     addBarbellWeight(key) {
       this.barbellSelected = true;
-      this.barbells[key].text += "💪";
+      this.barbells[key].text += "&check;";
       this.disableBarbellButton();
       return (this.totalWeight += this.barbells[key].weight);
     },
