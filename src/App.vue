@@ -20,7 +20,7 @@
               :weight="barbell.weight"
               :text="barbell.text"
               @click="addBarbellWeight(key)"
-            ></Barbell>
+            />
           </ul>
         </div>
 
@@ -37,7 +37,7 @@
               :plateCount="plate.plateCount"
               :isOnBarbell="plate.isOnBarbell"
               @click="addPlateWeight(key)"
-            ></Plate>
+            />
           </ul>
         </div>
 
