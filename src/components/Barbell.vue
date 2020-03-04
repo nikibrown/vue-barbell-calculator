@@ -41,6 +41,7 @@ button span {
   color: white;
 }
 button:disabled {
+  cursor: default;
   opacity: 1;
 }
 </style>

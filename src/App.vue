@@ -26,10 +26,9 @@
           </ul>
         </div>
 
+        <h2>{{ platesHeadline }}</h2>
+        <p>{{ platesSubHeadline }}</p>
         <div class="form-group">
-          <h2>{{ platesHeadline }}</h2>
-          <p>{{ platesSubHeadline }}</p>
-
           <ul class="plates">
             <Plate
               v-for="(plate, key) in plates"
@@ -201,7 +200,6 @@ export default {
     addPlateWeight(key) {
       if (this.barbellSelected) {
         this.updatePlateCount(key);
-        // is there a better way to get the individual weight of each plate?
         return (this.totalWeight += this.plates[key].weight * 2);
       } else {
         alert("Please select a barbell first!");
@@ -214,10 +212,8 @@ export default {
     },
 
     resetTotalWeight() {
-      // set barbellSelected to galse when starting over
       this.barbellSelected = false;
 
-      // loop through each plate an set plateCount to 0 and remove from barbell
       this.plates.forEach(plate => {
         plate.plateCount = 0;
         plate.isOnBarbell = false;
@@ -228,7 +224,6 @@ export default {
         barbell.text = "";
       });
 
-      // set weight to 0
       return (this.totalWeight = 0);
     }
   }
