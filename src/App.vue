@@ -45,7 +45,7 @@
 
         <div class="form-group">
           <h1>Total Weight: {{ totalWeight }}</h1>
-          <button @click="resetTotalWeight" class="btn btn-danger">Reset</button>
+          <button @click="resetTotalWeight" class="btn btn-secondary">Reset</button>
         </div>
       </div>
     </main>
