@@ -219,6 +219,11 @@ export default {
         plate.isOnBarbell = false;
       });
 
+      this.barbells.forEach(barbell => {
+        barbell.isDisabled = false;
+        barbell.text = "";
+      });
+
       // set weight to 0
       return (this.totalWeight = 0);
     }
