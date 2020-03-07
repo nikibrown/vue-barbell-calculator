@@ -129,6 +129,7 @@ export default {
 
             barbells: [
                 {
+                    // TODO: make bsClasses an array
                     kiloWeight: 20,
                     poundWeight: 45,
                     text: "",
@@ -188,7 +189,6 @@ export default {
                     isOnBarbell: false
                 },
                 {
-                    // TODO: conditionally add kilo-plate-hide when kilos is selected
                     bsClasses: "btn btn-plate btn-dark weight-lg pound-weight-10 kilo-weight-hide",
                     poundWeight: 10,
                     kiloWeight: 0,
@@ -235,12 +235,13 @@ export default {
                 },
                 {
                     bsClasses: "btn btn-plate btn-dark weight-sm",
-                    poundWeight: 0.25,
+                    poundWeight: .25,
                     kiloWeight: .5,
                     plateCount: 0,
                     isOnBarbell: false
                 }
             ],
+            // TODO: make totalWeight an array and push values to it and then reduce?
             totalWeight: 0
         }
     },
@@ -305,6 +306,8 @@ export default {
             this.largePlates[key].isOnBarbell = true
             return (this.largePlates[key].plateCount += 2)
         },
+
+        // TODO: refactor to have 1 add weight function and 1 updatePlate count function. Not sure if it makes sense to have seperate functions vs if/ese in 1 function.
 
         resetTotalWeight() {
             this.barbellSelected = false

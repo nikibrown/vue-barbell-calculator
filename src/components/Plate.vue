@@ -1,9 +1,9 @@
 <template>
   <button @click="emitClick">
-    <span v-if="$parent.pounds" class="weight">{{ poundWeight }}
+    <span v-if="$parent.pounds" class="weight">{{ bullshitNumberFormating(poundWeight) }}
       <span class="weight-label">lb</span>
     </span>
-    <span v-if="$parent.kilos" class="weight">{{ kiloWeight }}
+    <span v-if="$parent.kilos" class="weight">{{ bullshitNumberFormating(kiloWeight) }}
       <span class="weight-label">kg</span>
     </span>
 
@@ -21,6 +21,11 @@ export default {
   methods: {
     emitClick: function() {
       this.$emit("click");
+    },
+
+    bullshitNumberFormating: function(decimalWithFuckingLeadingZero) {
+      let stringWithNoFuckingLeadingZero = decimalWithFuckingLeadingZero.toString().replace(/^0+/, '')
+      return stringWithNoFuckingLeadingZero
     }
   },
 
