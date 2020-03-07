@@ -1,6 +1,12 @@
 <template>
   <button @click="emitClick">
-    {{ weight }}
+    <span v-if="$parent.pounds" class="weight">{{ poundWeight }}
+      <span class="weight-label">lb</span>
+    </span>
+    <span v-if="$parent.kilos" class="weight">{{ kiloWeight }}
+      <span class="weight-label">kg</span>
+    </span>
+
     <span
       v-if="isOnBarbell"
       class="badge badge-pill badge-danger plate-quantity"
@@ -19,7 +25,11 @@ export default {
   },
 
   props: {
-    weight: {
+    poundWeight: {
+      type: Number,
+      required: true
+    },
+    kiloWeight: {
       type: Number,
       required: true
     },
@@ -39,7 +49,6 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .weight-lg {
   min-width: 70px;
@@ -49,5 +58,13 @@ export default {
 .weight-sm {
   min-width: 50px;
   height: 50px;
+}
+
+.kilos .kilo-weight-hide {
+  display: none;
+}
+
+.weight-label {
+  font-size: 10px;
 }
 </style>
