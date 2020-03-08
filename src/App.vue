@@ -1,5 +1,5 @@
 <template>
-    <div id="app" :class="{ pounds: pounds, kilos: kilos }">
+    <div id="app" :class="pounds ? 'pounds' : 'kilos'">
         <header>
             <nav class="navbar navbar-dark bg-dark">
                 <div class="app-container">
