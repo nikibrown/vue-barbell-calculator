@@ -1,8 +1,8 @@
 <template>
     <button @click="emitClick" :disabled="isDisabled">
         <span v-html="text"></span>
-        <span v-if="$parent.pounds" class="weight">{{ poundWeight }}</span>
-        <span v-if="$parent.kilos" class="weight">{{ kiloWeight }}</span>
+        <span v-if="$parent.pounds" class="weight">{{ poundWeight }} <span class="weight-label">lb</span></span>
+        <span v-if="$parent.kilos" class="weight">{{ kiloWeight }} <span class="weight-label">kg</span></span>
     </button>
 </template>
 
@@ -48,5 +48,9 @@ button span {
 button:disabled {
     cursor: default;
     opacity: 0.8;
+}
+
+.weight-label {
+  font-size: 10px;
 }
 </style>

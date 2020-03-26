@@ -118,9 +118,9 @@ export default {
     data: function() {
         return {
             appTitle: "🏋️💪 Barbell Calculator",
-            weightSystem: "Select pounds / kilos",
-            barbellHeadline: "Barbells",
-            platesHeadline: "Second Pick your plates",
+            weightSystem: "Pounds or Kilos?",
+            barbellHeadline: "Select Barbell",
+            platesHeadline: "Select Plates",
             platesSubHeadline:
                 "Only count weight on one side of the bar, we do the math! (x 2). Unless you want to unevenly load the bar, but why would you do that???",
             barbellSelected: false,
@@ -129,7 +129,7 @@ export default {
 
             barbells: [
                 {
-                    // TODO: make bsClasses an array
+                    // TODO: make bsClasses an array to loop through?
                     kiloWeight: 20,
                     poundWeight: 45,
                     text: "",
@@ -265,7 +265,6 @@ export default {
         },
 
         disableBarbellButton() {
-            console.log("disable buttns run")
             this.barbells.forEach(barbell => {
                 barbell.isDisabled = true
             })
@@ -424,23 +423,4 @@ main {
     height: 19px;
 }
 
-@media screen and (max-width: 900px) {
-    .btn-plate.weight-lg,
-    .btn-plate.weight-sm {
-        font-size: 14px;
-        min-width: 39px;
-        min-height: 39px;
-        margin: 3px;
-    }
-}
-
-@media screen and (max-width: 330px) {
-    .btn-plate.weight-lg,
-    .btn-plate.weight-sm {
-        font-size: 12px;
-        min-width: 39px;
-        min-height: 39px;
-        margin: 2px;
-    }
-}
 </style>

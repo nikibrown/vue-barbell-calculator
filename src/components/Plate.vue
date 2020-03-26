@@ -56,13 +56,34 @@ export default {
 
 <style scoped>
 .weight-lg {
-  min-width: 70px;
-  min-height: 70px;
+  min-width: 100px;
+  min-height: 100px;
 }
 
 .weight-sm {
-  min-width: 50px;
-  height: 50px;
+  min-width: 60px;
+  min-height: 60px;
+}
+
+
+@media screen and (max-width: 900px) {
+    .weight-lg,
+    .weight-sm {
+        font-size: 14px;
+        min-width: 60px;
+        min-height: 60px;
+        margin: 3px;
+    }
+}
+
+@media screen and (max-width: 330px) {
+    .weight-lg,
+    .weight-sm {
+        font-size: 12px;
+        min-width: 60px;
+        min-height: 60px;
+        margin: 2px;
+    }
 }
 
 .kilos .kilo-weight-hide {
