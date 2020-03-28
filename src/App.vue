@@ -2,9 +2,18 @@
     <div id="app" :class="pounds ? 'pounds' : 'kilos'">
         <header>
             <nav class="navbar navbar-dark bg-dark">
-                <div class="app-container justify-content-between">
+                <div class="app-container">
                     <h1 class="navbar-brand">
                         <a href="/index.html" class="navbar-brand">{{ appTitle }}</a>
+                    </h1>
+                </div>
+            </nav>
+            <nav class="navbar navbar-light bg-light">
+                <div class="app-container justify-content-between">
+                    <h1 class="navbar-brand">
+                        Total Weight: {{ totalWeight }}
+                        <span v-if="pounds">lb</span>
+                        <span v-else>kg</span>
                     </h1>
 
                     <button @click="resetTotalWeight" class="btn btn-secondary btn-danger btn-sm">Reset</button>
@@ -14,7 +23,7 @@
         <main>
             <div class="app-container">
                 <div class="form-group">
-                    <h4>{{ weightSystem }}</h4>
+                    <h5>{{ weightSystem }}</h5>
                     <div class="unit-group" role="group" aria-label="Pounds or Kilos">
                         <Unit
                             v-for="(unit, key) in units"
@@ -30,7 +39,7 @@
                    </div>
                 </div>
                 <div class="form-group">
-                    <h4>{{ barbellHeadline }}</h4>
+                    <h5>{{ barbellHeadline }}</h5>
 
                     <ul class="barbells">
                         <div class="barbell-group" role="group" aria-label="Select barbell weight">
@@ -48,7 +57,7 @@
                     </ul>
                 </div>
 
-                <h4>{{ platesHeadline }}</h4>
+                <h5>{{ platesHeadline }}</h5>
                 <p>{{ platesSubHeadline }}</p>
                 <div class="form-group">
                     <ul class="plates large-plates">
@@ -75,14 +84,6 @@
                             :kiloWeight="plate.kiloWeight"
                         />
                     </ul>
-                </div>
-
-                <div class="form-group">
-                    <h1>Total Weight: {{ totalWeight }}
-                        <span v-if="pounds">lb</span>
-                        <span v-else>kg</span>
-                    </h1>
-                    
                 </div>
             </div>
         </main>
@@ -117,9 +118,9 @@ export default {
     data: function() {
         return {
             appTitle: "🏋️💪 Barbell Calculator",
-            weightSystem: "1 Select Unit of Measurement",
-            barbellHeadline: "2 Select Barbell",
-            platesHeadline: "3 Select Plates",
+            weightSystem: "1. Select Unit of Measurement",
+            barbellHeadline: "2. Select Barbell",
+            platesHeadline: "3. Select Plates",
             platesSubHeadline:
                 "Only count weight on one side of the bar, we do the math! (x 2). Unless you want to unevenly load the bar, but why would you do that???",
             barbellSelected: false,

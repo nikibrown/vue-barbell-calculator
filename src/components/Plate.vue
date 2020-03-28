@@ -80,8 +80,8 @@ export default {
     .weight-lg,
     .weight-sm {
       font-size: 14px;
-      min-width: 100px;
-      min-height: 100px;
+      min-width: 70px;
+      min-height: 70px;
       margin: 8px;
     }
 }
