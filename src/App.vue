@@ -90,12 +90,24 @@
         <footer>
             <nav class="navbar navbar-dark bg-dark">
                 <div class="app-container">
+
                     <p class="credits">
-                        Made by Niki Brown
-                        <span class="icons">
-                            💻💪☕💜
-                            <img src="https://vuejs.org/images/logo.png" alt="Vue JS!" />
+                        <span>Made with: </span>
+                        <span>
+                            <a href="https://vuejs.org/" target="_blank">
+                                <img src="../public/assets/img/vuejs.svg" alt="Vue JS!" />
+                            </a>
                         </span>
+                        <span>
+                            <a href="https://github.com/nikibrown/vue-barbell-calculator" target="_blank">
+                                <img src="../public/assets/img/github.svg" alt="Vue Github repo (see what I did there...)" />
+                            </a>
+                        </span>
+                        <span>💻</span>
+                        <span>💪</span>
+                        <span>☕</span>
+                        <span>💜</span>
+                        
                     </p>
                 </div>
             </nav>
@@ -435,17 +447,23 @@ button {
 
 .credits {
     color: white;
+    margin-bottom: 0;
     text-align: center;
     width: 100%;
 }
 
-.credits img {
-    max-height: 16px;
-    width: auto;
+.credits img,
+.credits a {
+    width: 16px;
+    height: 16px;
 }
 
-.credits .icons {
-    display: block;
+.credits span {
+    margin: 0 5px;
+}
+
+.credits a {
+    display: inline;
 }
 
 .app-container {
