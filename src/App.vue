@@ -2,10 +2,12 @@
     <div id="app" :class="pounds ? 'pounds' : 'kilos'">
         <header>
             <nav class="navbar navbar-dark bg-dark">
-                <div class="app-container">
+                <div class="app-container justify-content-between">
                     <h1 class="navbar-brand">
                         <a href="/index.html" class="navbar-brand">{{ appTitle }}</a>
                     </h1>
+
+                    <button @click="resetTotalWeight" class="btn btn-secondary btn-danger btn-sm">Reset</button>
                 </div>
             </nav>
         </header>
@@ -80,7 +82,7 @@
                         <span v-if="pounds">lb</span>
                         <span v-else>kg</span>
                     </h1>
-                    <button @click="resetTotalWeight" class="btn btn-secondary">Reset</button>
+                    
                 </div>
             </div>
         </main>
@@ -394,7 +396,11 @@ export default {
 @import "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css";
 
 .navbar-brand {
-    font-size: 2rem
+    font-size: 1.4rem
+}
+
+nav .app-container {
+    display: flex;
 }
 
 ul {
