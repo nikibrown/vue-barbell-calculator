@@ -413,6 +413,10 @@ button {
     margin: 0;
 }
 
+.btn-lg {
+    padding: 1rem;
+}
+
 .plates,
 .barbells {
     flex-direction: row;
