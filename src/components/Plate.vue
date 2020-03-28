@@ -76,13 +76,13 @@ export default {
     }
 }
 
-@media screen and (max-width: 330px) {
+@media screen and (max-width: 450px) {
     .weight-lg,
     .weight-sm {
-        font-size: 12px;
-        min-width: 60px;
-        min-height: 60px;
-        margin: 2px;
+      font-size: 14px;
+      min-width: 100px;
+      min-height: 100px;
+      margin: 8px;
     }
 }
 

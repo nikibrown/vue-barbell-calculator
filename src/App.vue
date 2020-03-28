@@ -15,7 +15,7 @@
             <div class="app-container">
                 <div class="form-group">
                     <h4>{{ weightSystem }}</h4>
-                    <div class="btn-group" role="group" aria-label="Pounds or Kilos">
+                    <div class="unit-group" role="group" aria-label="Pounds or Kilos">
                         <Unit
                             v-for="(unit, key) in units"
                             @click="selectUnits(key)"
@@ -33,7 +33,7 @@
                     <h4>{{ barbellHeadline }}</h4>
 
                     <ul class="barbells">
-                        <div class="btn-group" role="group" aria-label="Select barbell weight">
+                        <div class="barbell-group" role="group" aria-label="Select barbell weight">
                             <Barbell
                                 v-for="(barbell, key) in barbells"
                                 :class="barbell.bsClasses"
@@ -415,9 +415,6 @@ button {
     position: relative;
 }
 
-.btn-group button {
-    margin: 0;
-}
 
 .btn-lg {
     padding: 1rem;
@@ -428,9 +425,17 @@ button {
     flex-direction: row;
 }
 
+
+@media screen and (max-width: 450px) {
+    .plates {
+        flex-wrap: wrap;
+    }
+}
+
 .credits {
     color: white;
     text-align: center;
+    width: 100%;
 }
 
 .credits img {
@@ -444,7 +449,7 @@ button {
 
 .app-container {
     margin: 0 auto;
-    width: 50vw;
+    width: 60vw;
 }
 
 @media screen and (max-width: 900px) {
@@ -491,5 +496,6 @@ main {
     top: auto;
     height: 19px;
 }
+
 
 </style>
