@@ -127,14 +127,14 @@ export default {
 
             units: [
                 {   
-                    bsClasses: "btn btn-secondary",
+                    bsClasses: "btn btn-secondary btn-lg",
                     unitLabel: "Pounds",
                     text: "&check; ",
                     selected: true,
                     isDisabled: false
                 },
                 {   
-                    bsClasses: "btn btn-secondary",
+                    bsClasses: "btn btn-secondary btn-lg    ",
                     unitLabel: "Kilos",
                     text: "",
                     selected: false,
@@ -409,16 +409,13 @@ button {
     position: relative;
 }
 
+.btn-group button {
+    margin: 0;
+}
+
 .plates,
 .barbells {
     flex-direction: row;
-}
-
-footer {
-    bottom: 0;
-    position: fixed;
-    margin-top: 100px;
-    width: 100%;
 }
 
 .credits {
