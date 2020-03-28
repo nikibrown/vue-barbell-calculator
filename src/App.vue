@@ -12,28 +12,23 @@
         <main>
             <div class="app-container">
                 <div class="form-group">
-                    <h2>{{ weightSystem }}</h2>
+                    <h4>{{ weightSystem }}</h4>
                     <div class="btn-group" role="group" aria-label="Pounds or Kilos">
-                        <button
-                            type="button"
-                            class="btn btn-secondary"
-                            @click="togglePoundsKilos()"
-                        >
-                            <span v-if="pounds">&check;</span>
-                            Pounds
-                        </button>
-                        <button
-                            type="button"
-                            class="btn btn-secondary"
-                            @click="togglePoundsKilos()"
-                        >
-                            <span v-if="kilos">&check;</span>
-                            Kilos
-                        </button>
+                        <Unit
+                            v-for="(unit, key) in units"
+                            @click="selectUnits(key)"
+                            :class="unit.bsClasses"
+                            :disabled="unit.isDisabled"
+                            :key="key"
+                            :text="unit.text"
+                            :selected="unit.selected"
+                            :unitLabel="unit.unitLabel"
+                        />
+
                    </div>
                 </div>
                 <div class="form-group">
-                    <h2>{{ barbellHeadline }}</h2>
+                    <h4>{{ barbellHeadline }}</h4>
 
                     <ul class="barbells">
                         <div class="btn-group" role="group" aria-label="Select barbell weight">
@@ -51,7 +46,7 @@
                     </ul>
                 </div>
 
-                <h2>{{ platesHeadline }}</h2>
+                <h4>{{ platesHeadline }}</h4>
                 <p>{{ platesSubHeadline }}</p>
                 <div class="form-group">
                     <ul class="plates large-plates">
@@ -106,26 +101,47 @@
 </template>
 
 <script>
+import Unit from "./components/Unit.vue"
 import Barbell from "./components/Barbell.vue"
 import Plate from "./components/Plate.vue"
 
 export default {
     name: "App",
     components: {
+        Unit,
         Plate,
         Barbell
     },
     data: function() {
         return {
             appTitle: "🏋️💪 Barbell Calculator",
-            weightSystem: "Pounds or Kilos?",
-            barbellHeadline: "Select Barbell",
-            platesHeadline: "Select Plates",
+            weightSystem: "1 Select Unit of Measurement",
+            barbellHeadline: "2 Select Barbell",
+            platesHeadline: "3 Select Plates",
             platesSubHeadline:
                 "Only count weight on one side of the bar, we do the math! (x 2). Unless you want to unevenly load the bar, but why would you do that???",
             barbellSelected: false,
+            unitsSelected: false,
             pounds: true,
             kilos: false,
+
+            units: [
+                {   
+                    bsClasses: "btn btn-secondary",
+                    unitLabel: "Pounds",
+                    text: "&check; ",
+                    selected: true,
+                    isDisabled: false
+                },
+                {   
+                    bsClasses: "btn btn-secondary",
+                    unitLabel: "Kilos",
+                    text: "",
+                    selected: false,
+                    isDisabled: false
+                }
+                
+            ],
 
             barbells: [
                 {
@@ -241,21 +257,46 @@ export default {
                     isOnBarbell: false
                 }
             ],
-            // TODO: make totalWeight an array and push values to it and then reduce?
+           
             totalWeight: 0
         }
     },
 
+
     methods: {
-        togglePoundsKilos() {
-            this.pounds = !this.pounds
-            this.kilos = !this.kilos
+
+        // TODO: Add conversion method - this needs to actually convert numbers to pounds/kilos. If you add weights in pounds and then toggle it just changes labels not actual weight values
+
+         // TODO: Add method to make totalWeight an array and push values to it and then reduce?
+
+        selectUnits(key) {
+            
+            if (this.units[key].unitLabel == "Pounds") {
+                this.pounds = true
+                this.kilos = false
+                this.disableUnitlButton()
+            } else {
+                this.pounds = false
+                this.kilos = true
+                this.disableUnitlButton()
+            }
+              
+            this.unitsSelected = true
+
+            // remove all checks
+            this.units.forEach(unit => {
+                unit.text = ""
+            })
+
+            //  then add checks to unitBtn clicked
+            this.units[key].text += "&check;"
         },
 
         addBarbellWeight(key) {
             this.barbellSelected = true
             this.barbells[key].text += "&check;"
             this.disableBarbellButton()
+            this.disableUnitlButton()
             if (this.pounds) {
                 return (this.totalWeight += this.barbells[key].poundWeight)
             } else {
@@ -267,6 +308,12 @@ export default {
         disableBarbellButton() {
             this.barbells.forEach(barbell => {
                 barbell.isDisabled = true
+            })
+        },
+
+        disableUnitlButton() {
+            this.units.forEach(unit => {
+                unit.isDisabled = true
             })
         },
 
@@ -310,6 +357,17 @@ export default {
 
         resetTotalWeight() {
             this.barbellSelected = false
+            this.unitsSelected = false
+
+            this.kilos = false
+            this.pounds = true
+
+            this.units.forEach(unit => {
+                unit.isDisabled = false
+                unit.text = ""
+            })
+
+            this.units[0].text = "&check; "
 
             this.smallPlates.forEach(plate => {
                 plate.plateCount = 0
@@ -334,6 +392,10 @@ export default {
 
 <style>
 @import "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css";
+
+.navbar-brand {
+    font-size: 2rem
+}
 
 ul {
     display: flex;
