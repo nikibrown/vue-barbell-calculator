@@ -4,7 +4,7 @@
             <nav class="navbar navbar-dark bg-dark">
                 <div class="app-container">
                     <h1 class="navbar-brand">
-                        <a href="/index.html" class="navbar-brand">{{ appTitle }}</a>
+                        <span class="navbar-brand">{{ appTitle }}</span>
                     </h1>
                 </div>
             </nav>
