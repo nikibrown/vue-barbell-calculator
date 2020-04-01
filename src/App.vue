@@ -1,10 +1,35 @@
 <template>
     <div id="app" :class="pounds ? 'pounds' : 'kilos'">
+        <header id="settings" :class="showSettings ? 'show' : ''">
+            <nav class="navbar navbar-dark bg-dark">
+                <div class="app-container">
+                    <!-- <h5>{{ weightSystem }}</h5> -->
+                    <div class="unit-group" role="group" aria-label="Pounds or Kilos">
+                        <Unit
+                            v-for="(unit, key) in units"
+                            @click="selectUnits(key)"
+                            :class="unit.bsClasses"
+                            :disabled="unit.isDisabled"
+                            :key="key"
+                            :text="unit.text"
+                            :selected="unit.selected"
+                            :unitLabel="unit.unitLabel"
+                        />
+
+                    </div>
+                </div>
+            </nav>
+        </header>
         <header>
             <nav class="navbar navbar-dark bg-dark">
                 <div class="app-container">
                     <h1 class="navbar-brand">
                         <span class="navbar-brand">{{ appTitle }}</span>
+
+                        <button @click="toggleSettings" class="btn btn-secondary btn-sm">
+                            <i class="fas fa-cog"></i>
+                        </button>
+
                     </h1>
                 </div>
             </nav>
@@ -16,13 +41,15 @@
                         <span v-else>kg</span>
                     </h1>
 
-                    <button @click="resetTotalWeight" class="btn btn-secondary btn-danger btn-sm">Reset</button>
+                    <button @click="resetTotalWeight" class="btn btn-secondary btn-danger btn-sm">
+                        <i class="fas fa-undo"></i>
+                    </button>
                 </div>
             </nav>
         </header>
         <main>
             <div class="app-container">
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <h5>{{ weightSystem }}</h5>
                     <div class="unit-group" role="group" aria-label="Pounds or Kilos">
                         <Unit
@@ -37,9 +64,9 @@
                         />
 
                    </div>
-                </div>
+                </div> -->
                 <div class="form-group">
-                    <h5>{{ barbellHeadline }}</h5>
+                    <!-- <h5>{{ barbellHeadline }}</h5> -->
 
                     <ul class="barbells">
                         <div class="barbell-group" role="group" aria-label="Select barbell weight">
@@ -57,8 +84,8 @@
                     </ul>
                 </div>
 
-                <h5>{{ platesHeadline }}</h5>
-                <p>{{ platesSubHeadline }}</p>
+                <!-- <h5>{{ platesHeadline }}</h5>
+                <p>{{ platesSubHeadline }}</p> -->
                 <div class="form-group">
                     <ul class="plates large-plates">
                         <Plate
@@ -139,6 +166,7 @@ export default {
             unitsSelected: false,
             pounds: true,
             kilos: false,
+            showSettings: false,
 
             units: [
                 {   
@@ -284,6 +312,11 @@ export default {
 
          // TODO: Add method to make totalWeight an array and push values to it and then reduce?
 
+        toggleSettings() {
+            this.showSettings = !this.showSettings
+            //this.showSettings = true
+        },
+
         selectUnits(key) {
             
             if (this.units[key].unitLabel == "Pounds") {
@@ -407,6 +440,19 @@ export default {
 
 <style>
 @import "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css";
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@500;900&display=swap');
+
+body {
+    font-family: 'Heebo', sans-serif;
+}
+
+#settings {
+    display: none;
+}
+
+#settings.show {
+    display: block;
+}
 
 .navbar-brand {
     font-size: 1.4rem
