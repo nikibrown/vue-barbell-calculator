@@ -22,21 +22,19 @@
         </header>
         <header>
             <nav class="navbar navbar-dark bg-dark">
-                <div class="app-container">
+                <div class="app-container justify-content-between">
                     <h1 class="navbar-brand">
                         <span class="navbar-brand">{{ appTitle }}</span>
-
-                        <button @click="toggleSettings" class="btn btn-secondary btn-sm">
-                            <i class="fas fa-cog"></i>
-                        </button>
-
                     </h1>
+                     <button @click="toggleSettings" class="btn btn-secondary btn-sm">
+                        <i class="fas fa-cog"></i>
+                    </button>
                 </div>
             </nav>
             <nav class="navbar navbar-light bg-light">
                 <div class="app-container justify-content-between">
                     <h1 class="navbar-brand">
-                        Total Weight: {{ totalWeight }}
+                        {{ totalWeight }}
                         <span v-if="pounds">lb</span>
                         <span v-else>kg</span>
                     </h1>
@@ -156,7 +154,7 @@ export default {
     },
     data: function() {
         return {
-            appTitle: "🏋️💪 Barbell Calculator",
+            appTitle: "Barbell Calculator",
             weightSystem: "1. Select Unit of Measurement",
             barbellHeadline: "2. Select Barbell",
             platesHeadline: "3. Select Plates",
@@ -455,7 +453,8 @@ body {
 }
 
 .navbar-brand {
-    font-size: 1.4rem
+    font-size: 1.4rem;
+    font-weight: 900;
 }
 
 nav .app-container {
@@ -472,6 +471,10 @@ button {
     display: block;
     margin: 10px;
     position: relative;
+}
+
+button:first-child {
+    margin-left: 0;
 }
 
 
