@@ -26,26 +26,32 @@
                     <h1 class="navbar-brand">
                         <span class="navbar-brand">{{ appTitle }}</span>
                     </h1>
-                     <button @click="toggleSettings" class="btn btn-secondary btn-sm">
+                     <button 
+                        @click="toggleSettings" 
+                        class="tn btn-link"
+                        type="button"
+                    >
                         <i class="fas fa-cog"></i>
-                    </button>
-                </div>
-            </nav>
-            <nav class="navbar navbar-light bg-light navbar-main">
-                <div class="app-container justify-content-between">
-                    <h1 class="">
-                        {{ totalWeight }}
-                        <span v-if="pounds">lb</span>
-                        <span v-else>kg</span>
-                    </h1>
-
-                    <button @click="resetTotalWeight" class="btn btn-secondary btn-danger btn-sm">
-                        <i class="fas fa-undo"></i>
                     </button>
                 </div>
             </nav>
         </header>
         <main>
+            <div class="total-weight">
+                <div class="app-container justify-content-between">
+                    <nav class="navbar navbar-light navbar-main">
+                        <h1 class="">
+                            {{ totalWeight }}
+                            <span v-if="pounds">lb</span>
+                            <span v-else>kg</span>
+                        </h1>
+
+                        <button @click="resetTotalWeight" class="btn btn-secondary btn-danger btn-sm">
+                            <i class="fas fa-undo"></i>
+                        </button>
+                    </nav>
+                </div>
+            </div>
             <div class="app-container">
                <h5>{{barbellHeadline}}</h5>
                 <div class="form-group">
@@ -517,6 +523,14 @@ main {
     margin: 20px 0;
 }
 
+.total-weight {
+    margin: 20px 0;
+} 
+
+.total-weight .navbar {
+    background-color: #C4C4C4;
+}
+
 .btn {
     position: relative;
 }
@@ -551,5 +565,23 @@ main {
     height: 19px;
 }
 
+.btn-link {
+    background: none;
+    border: none;
+    color: #fff;
+}
 
+.btn-link:hover,
+.btn-link:focus {
+    color: rgba(255,255,255,.8);
+    outline: none;
+}
+
+footer {
+    margin-top: 40px;
+}
+
+footer .navbar {
+    padding: 15px;
+}
 </style>
