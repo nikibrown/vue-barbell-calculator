@@ -3,6 +3,7 @@
         <header id="settings" :class="showSettings ? 'show' : ''">
             <nav class="navbar navbar-dark bg-dark">
                 <div class="app-container">
+                    <h5>{{weightSystem}}</h5>
                     <div class="unit-group" role="group" aria-label="Pounds or Kilos">
                         <Unit
                             v-for="(unit, key) in units"
@@ -20,7 +21,7 @@
             </nav>
         </header>
         <header>
-            <nav class="navbar navbar-dark bg-dark">
+            <nav class="navbar navbar-dark bg-dark navbar-main">
                 <div class="app-container justify-content-between">
                     <h1 class="navbar-brand">
                         <span class="navbar-brand">{{ appTitle }}</span>
@@ -30,9 +31,9 @@
                     </button>
                 </div>
             </nav>
-            <nav class="navbar navbar-light bg-light">
+            <nav class="navbar navbar-light bg-light navbar-main">
                 <div class="app-container justify-content-between">
-                    <h1 class="navbar-brand">
+                    <h1 class="">
                         {{ totalWeight }}
                         <span v-if="pounds">lb</span>
                         <span v-else>kg</span>
@@ -46,9 +47,10 @@
         </header>
         <main>
             <div class="app-container">
-               
+               <h5>{{barbellHeadline}}</h5>
                 <div class="form-group">
                     <ul class="barbells">
+                        
                         <div class="barbell-group" role="group" aria-label="Select barbell weight">
                             <Barbell
                                 v-for="(barbell, key) in barbells"
@@ -63,6 +65,8 @@
                         </div>
                     </ul>
                 </div>
+
+                <h5>{{platesHeadline}}</h5>
 
                 <div class="form-group">
                     <ul class="plates large-plates">
@@ -135,9 +139,9 @@ export default {
     data: function() {
         return {
             appTitle: "Barbell Calculator",
-            weightSystem: "1. Select Unit of Measurement",
-            barbellHeadline: "2. Select Barbell",
-            platesHeadline: "3. Select Plates",
+            weightSystem: "Units of Measurement",
+            barbellHeadline: "Barbells",
+            platesHeadline: "Plates",
             platesSubHeadline:
                 "Only count weight on one side of the bar, we do the math! (x 2). Unless you want to unevenly load the bar, but why would you do that???",
             barbellSelected: false,
@@ -425,6 +429,7 @@ body {
 }
 
 #settings {
+    color: #fff;
     display: none;
 }
 
@@ -433,11 +438,12 @@ body {
 }
 
 .navbar-brand {
-    font-size: 1.4rem;
+    font-size: 1.8rem;
     font-weight: 900;
+    letter-spacing: 1px;
 }
 
-nav .app-container {
+.navbar-main .app-container {
     display: flex;
 }
 
