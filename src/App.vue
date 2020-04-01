@@ -1,29 +1,8 @@
 <template>
     <div id="app" :class="pounds ? 'pounds' : 'kilos'">
-        <header>
+        <header id="settings" :class="showSettings ? 'show' : ''">
             <nav class="navbar navbar-dark bg-dark">
                 <div class="app-container">
-                    <h1 class="navbar-brand">
-                        <span class="navbar-brand">{{ appTitle }}</span>
-                    </h1>
-                </div>
-            </nav>
-            <nav class="navbar navbar-light bg-light">
-                <div class="app-container justify-content-between">
-                    <h1 class="navbar-brand">
-                        Total Weight: {{ totalWeight }}
-                        <span v-if="pounds">lb</span>
-                        <span v-else>kg</span>
-                    </h1>
-
-                    <button @click="resetTotalWeight" class="btn btn-secondary btn-danger btn-sm">Reset</button>
-                </div>
-            </nav>
-        </header>
-        <main>
-            <div class="app-container">
-                <div class="form-group">
-                    <h5>{{ weightSystem }}</h5>
                     <div class="unit-group" role="group" aria-label="Pounds or Kilos">
                         <Unit
                             v-for="(unit, key) in units"
@@ -36,11 +15,39 @@
                             :unitLabel="unit.unitLabel"
                         />
 
-                   </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <h5>{{ barbellHeadline }}</h5>
+            </nav>
+        </header>
+        <header>
+            <nav class="navbar navbar-dark bg-dark">
+                <div class="app-container justify-content-between">
+                    <h1 class="navbar-brand">
+                        <span class="navbar-brand">{{ appTitle }}</span>
+                    </h1>
+                     <button @click="toggleSettings" class="btn btn-secondary btn-sm">
+                        <i class="fas fa-cog"></i>
+                    </button>
+                </div>
+            </nav>
+            <nav class="navbar navbar-light bg-light">
+                <div class="app-container justify-content-between">
+                    <h1 class="navbar-brand">
+                        {{ totalWeight }}
+                        <span v-if="pounds">lb</span>
+                        <span v-else>kg</span>
+                    </h1>
 
+                    <button @click="resetTotalWeight" class="btn btn-secondary btn-danger btn-sm">
+                        <i class="fas fa-undo"></i>
+                    </button>
+                </div>
+            </nav>
+        </header>
+        <main>
+            <div class="app-container">
+               
+                <div class="form-group">
                     <ul class="barbells">
                         <div class="barbell-group" role="group" aria-label="Select barbell weight">
                             <Barbell
@@ -57,8 +64,6 @@
                     </ul>
                 </div>
 
-                <h5>{{ platesHeadline }}</h5>
-                <p>{{ platesSubHeadline }}</p>
                 <div class="form-group">
                     <ul class="plates large-plates">
                         <Plate
@@ -129,7 +134,7 @@ export default {
     },
     data: function() {
         return {
-            appTitle: "🏋️💪 Barbell Calculator",
+            appTitle: "Barbell Calculator",
             weightSystem: "1. Select Unit of Measurement",
             barbellHeadline: "2. Select Barbell",
             platesHeadline: "3. Select Plates",
@@ -139,6 +144,7 @@ export default {
             unitsSelected: false,
             pounds: true,
             kilos: false,
+            showSettings: false,
 
             units: [
                 {   
@@ -284,6 +290,11 @@ export default {
 
          // TODO: Add method to make totalWeight an array and push values to it and then reduce?
 
+        toggleSettings() {
+            this.showSettings = !this.showSettings
+            //this.showSettings = true
+        },
+
         selectUnits(key) {
             
             if (this.units[key].unitLabel == "Pounds") {
@@ -407,9 +418,23 @@ export default {
 
 <style>
 @import "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css";
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@500;900&display=swap');
+
+body {
+    font-family: 'Heebo', sans-serif;
+}
+
+#settings {
+    display: none;
+}
+
+#settings.show {
+    display: block;
+}
 
 .navbar-brand {
-    font-size: 1.4rem
+    font-size: 1.4rem;
+    font-weight: 900;
 }
 
 nav .app-container {
@@ -426,6 +451,10 @@ button {
     display: block;
     margin: 10px;
     position: relative;
+}
+
+button:first-child {
+    margin-left: 0;
 }
 
 
