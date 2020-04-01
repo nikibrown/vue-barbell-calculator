@@ -431,6 +431,7 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@500;900&display=swap');
 
 body {
+    background-color: #E1E0E0;
     font-family: 'Heebo', sans-serif;
 }
 
@@ -529,6 +530,12 @@ main {
 
 .total-weight .navbar {
     background-color: #C4C4C4;
+    border-radius: .3rem;
+}
+
+.total-weight h1 {
+    line-height: 1;
+    margin-bottom: 0;
 }
 
 .btn {
