@@ -3,7 +3,6 @@
         <header id="settings" :class="showSettings ? 'show' : ''">
             <nav class="navbar navbar-dark bg-dark">
                 <div class="app-container">
-                    <!-- <h5>{{ weightSystem }}</h5> -->
                     <div class="unit-group" role="group" aria-label="Pounds or Kilos">
                         <Unit
                             v-for="(unit, key) in units"
@@ -47,25 +46,8 @@
         </header>
         <main>
             <div class="app-container">
-                <!-- <div class="form-group">
-                    <h5>{{ weightSystem }}</h5>
-                    <div class="unit-group" role="group" aria-label="Pounds or Kilos">
-                        <Unit
-                            v-for="(unit, key) in units"
-                            @click="selectUnits(key)"
-                            :class="unit.bsClasses"
-                            :disabled="unit.isDisabled"
-                            :key="key"
-                            :text="unit.text"
-                            :selected="unit.selected"
-                            :unitLabel="unit.unitLabel"
-                        />
-
-                   </div>
-                </div> -->
+               
                 <div class="form-group">
-                    <!-- <h5>{{ barbellHeadline }}</h5> -->
-
                     <ul class="barbells">
                         <div class="barbell-group" role="group" aria-label="Select barbell weight">
                             <Barbell
@@ -82,8 +64,6 @@
                     </ul>
                 </div>
 
-                <!-- <h5>{{ platesHeadline }}</h5>
-                <p>{{ platesSubHeadline }}</p> -->
                 <div class="form-group">
                     <ul class="plates large-plates">
                         <Plate
