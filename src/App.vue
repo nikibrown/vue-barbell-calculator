@@ -54,6 +54,7 @@
             </div>
             <div class="app-container">
                <h5>{{barbellHeadline}}</h5>
+               <p v-if="barbellError" class="error" >{{barbellErrorText}}</p>
                 <div class="form-group">
                     <ul class="barbells">
                         
@@ -147,6 +148,8 @@ export default {
             appTitle: "Barbell Calculator",
             weightSystem: "Units of Measurement",
             barbellHeadline: "Barbells",
+            barbellError: false,
+            barbellErrorText: "Please select a barbell first!",
             platesHeadline: "Plates",
             platesSubHeadline:
                 "Only count weight on one side of the bar, we do the math! (x 2). Unless you want to unevenly load the bar, but why would you do that???",
@@ -296,13 +299,12 @@ export default {
 
     methods: {
 
-        // TODO: Add conversion method - this needs to actually convert numbers to pounds/kilos. If you add weights in pounds and then toggle it just changes labels not actual weight values
+        
 
          // TODO: Add method to make totalWeight an array and push values to it and then reduce?
 
         toggleSettings() {
             this.showSettings = !this.showSettings
-            //this.showSettings = true
         },
 
         selectUnits(key) {
@@ -330,6 +332,7 @@ export default {
 
         addBarbellWeight(key) {
             this.barbellSelected = true
+            this.barbellError = false
             this.barbells[key].text += "&check;"
             this.disableBarbellButton()
             this.disableUnitlButton()
@@ -362,7 +365,7 @@ export default {
                     return (this.totalWeight += this.smallPlates[key].kiloWeight*2)
                 }
             } else {
-                alert("Please select a barbell first!")
+                this.barbellError = !this.barbellError
             }
         },
 
@@ -380,7 +383,7 @@ export default {
                     return (this.totalWeight += this.largePlates[key].kiloWeight*2)
                 }
             } else {
-                alert("Please select a barbell first!")
+                this.barbellError = !this.barbellError
             }
         },
 
@@ -536,6 +539,10 @@ main {
 .total-weight h1 {
     line-height: 1;
     margin-bottom: 0;
+}
+
+.error {
+    color: red;
 }
 
 .btn {
