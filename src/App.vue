@@ -563,6 +563,10 @@ main {
     box-shadow: none !important;
 }
 
+.btn[disabled]:hover {
+    cursor: not-allowed;
+}
+
 .btn .badge {
     position: absolute;
     bottom: -5px;
