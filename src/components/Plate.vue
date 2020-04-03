@@ -54,7 +54,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .weight-lg {
   min-width: 100px;
   min-height: 100px;
