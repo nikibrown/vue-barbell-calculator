@@ -21,7 +21,7 @@
             </nav>
         </header>
         <header>
-            <nav class="navbar navbar-dark bg-dark navbar-main">
+            <nav class="navbar navbar-dark navbar-main">
                 <div class="app-container justify-content-between">
                     <h1 class="navbar-brand">
                         <span class="navbar-brand">{{ appTitle }}</span>
@@ -104,25 +104,22 @@
             </div>
         </main>
         <footer>
-            <nav class="navbar navbar-dark bg-dark">
+            <nav class="navbar navbar-dark">
                 <div class="app-container">
 
                     <p class="credits">
                         <span>Made with: </span>
                         <span>
-                            <a href="https://vuejs.org/" target="_blank">
-                                <img src="assets/img/vuejs.svg" alt="Made with Vue" />
-                            </a>
+                            <i class="fab fa-vuejs"></i>
                         </span>
                         <span>
                             <a href="https://github.com/nikibrown/vue-barbell-calculator" target="_blank">
-                                <img src="assets/img/github.svg" alt="Vue Github repo (see what I did there...)" />
+                                <i class="fab fa-github"></i>
                             </a>
                         </span>
-                        <span>💻</span>
-                        <span>💪</span>
-                        <span>☕</span>
-                        <span>💜</span>
+                        <span>
+                            <i class="fas fa-info-circle"></i>
+                        </span>
                         
                     </p>
                 </div>
@@ -437,12 +434,16 @@ body {
 }
 
 #settings {
-    color: #fff;
+    color: $white;
     display: none;
 }
 
 #settings.show {
     display: block;
+}
+
+.navbar-main {
+    background-color: $blueGray;
 }
 
 .navbar-brand {
@@ -451,8 +452,11 @@ body {
     letter-spacing: 1px;
 }
 
-.navbar-main .app-container {
-    display: flex;
+.navbar-main  {
+    background-color: $blueGray;
+    .app-container {
+        display: flex;
+    }   
 }
 
 ul {
@@ -489,16 +493,23 @@ button:first-child {
 }
 
 .credits {
-    color: white;
+    color: $white;
     margin-bottom: 0;
     text-align: center;
     width: 100%;
+
+    i {
+        font-size: 22px;
+    }
 }
 
-.credits img,
+
 .credits a {
-    width: 16px;
-    height: 16px;
+    color: $white;
+    &:hover {
+        color: darken($white, 10%);
+    }
+    
 }
 
 .credits span {
@@ -558,7 +569,6 @@ main {
 
 .btn-plate {
     border-radius: 50%;
-    border: none;
     margin: 10px;
 }
 
@@ -595,9 +605,9 @@ main {
 
 footer {
     margin-top: 40px;
-}
-
-footer .navbar {
-    padding: 15px;
+    .navbar {
+        background-color: $blueGray;
+        padding: 15px;
+    }
 }
 </style>

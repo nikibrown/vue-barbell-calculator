@@ -72,7 +72,7 @@ export default {
 .weight-sm {
   
   background-color: $darkGray;
-  border: 3px solid;
+  border: 5px solid;
   border-color: darken($darkGray, 10%);
   min-width: 70px;
   min-height: 70px;
@@ -85,7 +85,7 @@ export default {
 @media screen and (max-width: 900px) {
     .weight-lg,
     .weight-sm {
-      border-width: 3px;
+      border-width: 4px;
       font-size: 14px;
       min-width: 70px;
       min-height: 70px;
