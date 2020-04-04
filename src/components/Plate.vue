@@ -57,51 +57,35 @@ export default {
 <style lang="scss" scoped>
 
 .btn-plate {
+  border: 4px solid;
   color: $white;
   &:hover {
     color: $white;
   }
 }
 
-.weight-lg {
-  border: 5px solid;
-  min-width: 100px;
-  min-height: 100px;
-}
 
 .weight-sm {
-  
   background-color: $darkGray;
-  border: 5px solid;
+  border: 4px solid;
   border-color: darken($darkGray, 10%);
-  min-width: 70px;
-  min-height: 70px;
   &:hover {
     background-color: darken($darkGray, 10%);
   }
 }
 
 
-@media screen and (max-width: 900px) {
-    .weight-lg,
-    .weight-sm {
-      border-width: 4px;
-      font-size: 14px;
-      min-width: 70px;
-      min-height: 70px;
-      margin: 3px;
-    }
+
+.weight-lg,
+.weight-sm {
+  border-width: 4px;
+  font-size: 14px;
+  min-width: 70px;
+  min-height: 70px;
+  margin: 5px;
 }
 
-@media screen and (max-width: 450px) {
-    .weight-lg,
-    .weight-sm {
-      font-size: 14px;
-      min-width: 70px;
-      min-height: 70px;
-      margin: 8px;
-    }
-}
+
 
 .kilos .kilo-weight-hide {
   display: none;

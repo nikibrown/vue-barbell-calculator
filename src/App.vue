@@ -39,7 +39,7 @@
         <main>
             <div class="total-weight">
                 <div class="app-container justify-content-between">
-                    <nav class="navbar navbar-light navbar-main">
+                    <nav class="navbar navbar-light navbar-total-weight">
                         <h1 class="">
                             {{ totalWeight }}
                             <span v-if="pounds">lb</span>
@@ -162,14 +162,14 @@ export default {
 
             units: [
                 {   
-                    bsClasses: "btn btn-secondary btn-lg",
+                    bsClasses: "btn btn-sm btn-secondary btn-lg",
                     unitLabel: "Pounds",
                     text: "&check; ",
                     selected: true,
                     isDisabled: false
                 },
                 {   
-                    bsClasses: "btn btn-secondary btn-lg    ",
+                    bsClasses: "btn btn-sm btn-secondary btn-lg    ",
                     unitLabel: "Kilos",
                     text: "",
                     selected: false,
@@ -450,10 +450,6 @@ body {
     display: block;
 }
 
-.navbar-main {
-    background-color: $blueGray;
-}
-
 .navbar-brand {
     font-size: 1.8rem;
     font-weight: 900;
@@ -462,9 +458,19 @@ body {
 
 .navbar-main  {
     background-color: $blueGray;
+    padding: .5em;
+
     .app-container {
         display: flex;
-    }   
+    }
+
+    h1 {
+        text-align: center;
+
+        span {
+            font-size: 20px;
+        }
+    }
 }
 
 ul {
@@ -480,7 +486,7 @@ button {
 }
 
 button:first-child {
-    margin-left: 0;
+    margin-left: 0 !important;
 }
 
 
@@ -490,13 +496,10 @@ button:first-child {
 
 .plates,
 .barbells {
-    flex-direction: row;
-}
-
-
-@media screen and (max-width: 450px) {
-    .plates {
-        flex-wrap: wrap;
+    flex-wrap: wrap;
+    
+    @media screen and (min-width: 600px) {
+        flex-direction: row;
     }
 }
 
@@ -554,13 +557,9 @@ footer a {
 
 .app-container {
     margin: 0 auto;
-    width: 60vw;
-}
-
-@media screen and (max-width: 900px) {
-    .app-container {
-        margin: 0 auto;
-        width: 95%;
+    width: 90%;
+    @media screen and (min-width: 600px) {
+        width: 480px;
     }
 }
 
@@ -568,19 +567,25 @@ main {
     margin: 20px 0;
 }
 
+.navbar {
+    padding: .5rem 0;
+}
+
 .total-weight {
     margin: 20px 0;
+    .navbar.navbar-total-weight {
+        background-color: #C4C4C4;
+        border-radius: .3rem;
+        padding: .5rem;
+    }
+
+    h1 {
+        line-height: 1;
+        margin-bottom: 0;
+    }
 } 
 
-.total-weight .navbar {
-    background-color: #C4C4C4;
-    border-radius: .3rem;
-}
 
-.total-weight h1 {
-    line-height: 1;
-    margin-bottom: 0;
-}
 
 .error {
     color: red;
