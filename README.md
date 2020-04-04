@@ -1,4 +1,4 @@
-# barbell-calc-components
+# Vue Barbell Calculator
 
 ## Project setup
 ```
