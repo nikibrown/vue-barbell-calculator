@@ -55,7 +55,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../styles/colors.scss";
 
 .btn-plate {
   color: $white;
