@@ -430,9 +430,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import url('https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css');
-@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@500;900&display=swap');
-
 
 
 body {
