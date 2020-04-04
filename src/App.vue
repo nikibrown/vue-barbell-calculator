@@ -21,14 +21,14 @@
             </nav>
         </header>
         <header>
-            <nav class="navbar navbar-dark bg-dark navbar-main">
+            <nav class="navbar navbar-dark navbar-main">
                 <div class="app-container justify-content-between">
                     <h1 class="navbar-brand">
                         <span class="navbar-brand">{{ appTitle }}</span>
                     </h1>
                      <button 
                         @click="toggleSettings" 
-                        class="tn btn-link"
+                        class="btn btn-link"
                         type="button"
                     >
                         <i class="fas fa-cog"></i>
@@ -104,26 +104,26 @@
             </div>
         </main>
         <footer>
-            <nav class="navbar navbar-dark bg-dark">
+            <nav class="navbar navbar-dark">
                 <div class="app-container">
 
                     <p class="credits">
                         <span>Made with: </span>
                         <span>
-                            <a href="https://vuejs.org/" target="_blank">
-                                <img src="../public/assets/img/vuejs.svg" alt="Vue JS!" />
-                            </a>
+                            <i class="fab fa-vuejs"></i>
                         </span>
                         <span>
                             <a href="https://github.com/nikibrown/vue-barbell-calculator" target="_blank">
-                                <img src="../public/assets/img/github.svg" alt="Vue Github repo (see what I did there...)" />
+                                <i class="fab fa-github"></i>
                             </a>
                         </span>
-                        <span>💻</span>
-                        <span>💪</span>
-                        <span>☕</span>
-                        <span>💜</span>
-                        
+                        <span>
+                            <i @click="toggleInfo" class="fas fa-info-circle"></i>
+                        </span>
+                    </p>
+
+                    <p id="info" :class="showInfo ? 'show' : ''">
+                        Barbell calculator is a made by <a href="https://nikibrown.com" target="_blank">Niki Brown</a>. If you find an issue or have a feature request please feel free to open a <a href="https://github.com/nikibrown/vue-barbell-calculator/issues" target="_blank">github issue</a> or fork and make a pull request. 
                     </p>
                 </div>
             </nav>
@@ -158,6 +158,7 @@ export default {
             pounds: true,
             kilos: false,
             showSettings: false,
+            showInfo: false,
 
             units: [
                 {   
@@ -204,42 +205,42 @@ export default {
 
             largePlates: [
                 {
-                    bsClasses: "btn btn-plate btn-danger weight-lg pound-weight-55 kilo-weight-25",
+                    bsClasses: "btn btn-plate weight-lg pound-weight-55 kilo-weight-25",
                     poundWeight: 55,
                     kiloWeight: 25,
                     plateCount: 0,
                     isOnBarbell: false
                 },
                 {
-                    bsClasses: "btn btn-plate btn-primary weight-lg pound-weight-45 kilo-weight-20",
+                    bsClasses: "btn btn-plate weight-lg pound-weight-45 kilo-weight-20",
                     poundWeight: 45,
                     kiloWeight: 20,
                     plateCount: 0,
                     isOnBarbell: false
                 },
                 {
-                    bsClasses: "btn btn-plate btn-warning weight-lg pound-weight-35 kilo-weight-15",
+                    bsClasses: "btn btn-plate weight-lg pound-weight-35 kilo-weight-15",
                     poundWeight: 35,
                     kiloWeight: 15,
                     plateCount: 0,
                     isOnBarbell: false
                 },
                 {
-                    bsClasses: "btn btn-plate btn-success weight-lg pound-weight-25 kilo-weight-10",
+                    bsClasses: "btn btn-plate weight-lg pound-weight-25 kilo-weight-10",
                     poundWeight: 25,
                     kiloWeight: 10,
                     plateCount: 0,
                     isOnBarbell: false
                 },
                 {
-                    bsClasses: "btn btn-plate btn-dark weight-lg pound-weight-15 kilo-weight-hide",
+                    bsClasses: "btn btn-plate weight-lg pound-weight-15 kilo-weight-hide",
                     poundWeight: 15,
                     kiloWeight: 0,
                     plateCount: 0,
                     isOnBarbell: false
                 },
                 {
-                    bsClasses: "btn btn-plate btn-dark weight-lg pound-weight-10 kilo-weight-hide",
+                    bsClasses: "btn btn-plate weight-lg pound-weight-10 kilo-weight-hide",
                     poundWeight: 10,
                     kiloWeight: 0,
                     plateCount: 0,
@@ -249,42 +250,42 @@ export default {
 
             smallPlates: [
                 {
-                    bsClasses: "btn btn-plate btn-dark weight-sm",
+                    bsClasses: "btn btn-plate weight-sm",
                     poundWeight: 5,
                     kiloWeight: 5,
                     plateCount: 0,
                     isOnBarbell: false
                 },
                 {
-                    bsClasses: "btn btn-plate btn-dark weight-sm",
+                    bsClasses: "btn btn-plate weight-sm",
                     poundWeight: 2.5,
                     kiloWeight: 2.5,
                     plateCount: 0,
                     isOnBarbell: false
                 },
                 {
-                    bsClasses: "btn btn-plate btn-dark weight-sm",
+                    bsClasses: "btn btn-plate weight-sm",
                     poundWeight: 1,
                     kiloWeight: 2,
                     plateCount: 0,
                     isOnBarbell: false
                 },
                 {
-                    bsClasses: "btn btn-plate btn-dark weight-sm",
+                    bsClasses: "btn btn-plate weight-sm",
                     poundWeight: .75,
                     kiloWeight: 1.5,
                     plateCount: 0,
                     isOnBarbell: false
                 },
                 {
-                    bsClasses: "btn btn-plate btn-dark weight-sm",
+                    bsClasses: "btn btn-plate weight-sm",
                     poundWeight: .5,
                     kiloWeight: 1,
                     plateCount: 0,
                     isOnBarbell: false
                 },
                 {
-                    bsClasses: "btn btn-plate btn-dark weight-sm",
+                    bsClasses: "btn btn-plate weight-sm",
                     poundWeight: .25,
                     kiloWeight: .5,
                     plateCount: 0,
@@ -305,6 +306,10 @@ export default {
 
         toggleSettings() {
             this.showSettings = !this.showSettings
+        },
+
+        toggleInfo() {
+            this.showInfo = !this.showInfo
         },
 
         selectUnits(key) {
@@ -430,9 +435,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import url('https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css');
-@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@500;900&display=swap');
-
 
 body {
     background-color: #E1E0E0;
@@ -440,12 +442,16 @@ body {
 }
 
 #settings {
-    color: #fff;
+    color: $white;
     display: none;
 }
 
 #settings.show {
     display: block;
+}
+
+.navbar-main {
+    background-color: $blueGray;
 }
 
 .navbar-brand {
@@ -454,8 +460,11 @@ body {
     letter-spacing: 1px;
 }
 
-.navbar-main .app-container {
-    display: flex;
+.navbar-main  {
+    background-color: $blueGray;
+    .app-container {
+        display: flex;
+    }   
 }
 
 ul {
@@ -491,17 +500,27 @@ button:first-child {
     }
 }
 
+footer {
+    color: $white;
+}
+
 .credits {
-    color: white;
+    color: $white;
     margin-bottom: 0;
     text-align: center;
     width: 100%;
+
+    i {
+        font-size: 22px;
+    }
 }
 
-.credits img,
-.credits a {
-    width: 16px;
-    height: 16px;
+
+footer a {
+    color: $white;
+    &:hover {
+        color: darken($white, 10%);
+    }
 }
 
 .credits span {
@@ -510,6 +529,27 @@ button:first-child {
 
 .credits a {
     display: inline;
+}
+
+.fa-info-circle {
+    &:hover {
+        color: darken($white, 10%);
+        cursor: pointer;
+    }
+}
+
+#info {
+    display: none;
+    font-weight: 300;
+    margin: 20px 0 20px 0;
+    
+    &.show {
+        display: block;
+    }
+
+    a {
+        text-decoration: underline;
+    }
 }
 
 .app-container {
@@ -561,7 +601,6 @@ main {
 
 .btn-plate {
     border-radius: 50%;
-    border: none;
     margin: 10px;
 }
 
@@ -598,9 +637,9 @@ main {
 
 footer {
     margin-top: 40px;
-}
-
-footer .navbar {
-    padding: 15px;
+    .navbar {
+        background-color: $blueGray;
+        padding: 15px;
+    }
 }
 </style>
