@@ -28,7 +28,7 @@
                     </h1>
                      <button 
                         @click="toggleSettings" 
-                        class="tn btn-link"
+                        class="btn btn-link"
                         type="button"
                     >
                         <i class="fas fa-cog"></i>
@@ -118,9 +118,12 @@
                             </a>
                         </span>
                         <span>
-                            <i class="fas fa-info-circle"></i>
+                            <i @click="toggleInfo" class="fas fa-info-circle"></i>
                         </span>
-                        
+                    </p>
+
+                    <p id="info" :class="showInfo ? 'show' : ''">
+                        Barbell calculator is a made by <a href="https://nikibrown.com" target="_blank">Niki Brown</a>. If you find an issue or have a feature request please feel free to open a <a href="https://github.com/nikibrown/vue-barbell-calculator/issues">github issue</a> or make a pull request. 
                     </p>
                 </div>
             </nav>
@@ -155,6 +158,7 @@ export default {
             pounds: true,
             kilos: false,
             showSettings: false,
+            showInfo: false,
 
             units: [
                 {   
@@ -302,6 +306,10 @@ export default {
 
         toggleSettings() {
             this.showSettings = !this.showSettings
+        },
+
+        toggleInfo() {
+            this.showInfo = !this.showInfo
         },
 
         selectUnits(key) {
@@ -492,6 +500,10 @@ button:first-child {
     }
 }
 
+footer {
+    color: $white;
+}
+
 .credits {
     color: $white;
     margin-bottom: 0;
@@ -504,12 +516,11 @@ button:first-child {
 }
 
 
-.credits a {
+footer a {
     color: $white;
     &:hover {
         color: darken($white, 10%);
     }
-    
 }
 
 .credits span {
@@ -518,6 +529,27 @@ button:first-child {
 
 .credits a {
     display: inline;
+}
+
+.fa-info-circle {
+    &:hover {
+        color: darken($white, 10%);
+        cursor: pointer;
+    }
+}
+
+#info {
+    display: none;
+    font-weight: 300;
+    margin: 20px 0 20px 0;
+    
+    &.show {
+        display: block;
+    }
+
+    a {
+        text-decoration: underline;
+    }
 }
 
 .app-container {
