@@ -111,12 +111,12 @@
                         <span>Made with: </span>
                         <span>
                             <a href="https://vuejs.org/" target="_blank">
-                                <img src="../public/assets/img/vuejs.svg" alt="Vue JS!" />
+                                <img src="assets/img/vuejs.svg" alt="Made with Vue" />
                             </a>
                         </span>
                         <span>
                             <a href="https://github.com/nikibrown/vue-barbell-calculator" target="_blank">
-                                <img src="../public/assets/img/github.svg" alt="Vue Github repo (see what I did there...)" />
+                                <img src="assets/img/github.svg" alt="Vue Github repo (see what I did there...)" />
                             </a>
                         </span>
                         <span>💻</span>
@@ -430,7 +430,6 @@ export default {
 </script>
 
 <style lang="scss">
-
 
 body {
     background-color: #E1E0E0;
