@@ -123,7 +123,7 @@
                     </p>
 
                     <p id="info" :class="showInfo ? 'show' : ''">
-                        Barbell calculator is a made by <a href="https://nikibrown.com" target="_blank">Niki Brown</a>. If you find an issue or have a feature request please feel free to open a <a href="https://github.com/nikibrown/vue-barbell-calculator/issues">github issue</a> or make a pull request. 
+                        Barbell calculator is a made by <a href="https://nikibrown.com" target="_blank">Niki Brown</a>. If you find an issue or have a feature request please feel free to open a <a href="https://github.com/nikibrown/vue-barbell-calculator/issues" target="_blank">github issue</a> or fork and make a pull request. 
                     </p>
                 </div>
             </nav>
