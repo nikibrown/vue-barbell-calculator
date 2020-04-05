@@ -1,0 +1,57 @@
+.btn {
+	margin: 10px 10px 10px 0;
+	position: relative;
+
+	&:focus,
+	&:active,
+	&:not([disabled]):not(.disabled):active {
+		box-shadow: none !important;
+	}
+
+	&:hover {
+		cursor: pointer;
+	}
+
+	&[disabled]:hover {
+		cursor: not-allowed;
+	}
+
+	&:disabled {
+		cursor: not-allowed;
+		opacity: 0.8;
+	}
+
+	.badge {
+		position: absolute;
+		bottom: -5px;
+		right: -5px;
+		z-index: 10;
+		top: auto;
+		height: 19px;
+	}
+}
+
+.btn-link {
+	background: none;
+	border: none;
+	color: $white;
+}
+
+.btn-link:hover,
+.btn-link:focus {
+	color: rgba(255, 255, 255, 0.8);
+	outline: none;
+}
+
+.btn-lg {
+	padding: 1rem;
+}
+
+.btn-dark {
+	background-color: black;
+	color: white;
+}
+
+.btn-plate {
+	border-radius: 50%;
+}

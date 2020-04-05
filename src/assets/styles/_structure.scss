@@ -1,0 +1,30 @@
+ul {
+	display: flex;
+	list-style-type: none;
+	padding: 0;
+}
+
+.error {
+	color: $red;
+}
+
+.app-container {
+	margin: 0 auto;
+	width: 90%;
+	@media screen and (min-width: 600px) {
+		width: 530px;
+	}
+}
+
+main {
+	margin: 20px 0;
+}
+
+.plates,
+.barbells {
+	flex-wrap: wrap;
+
+	@media screen and (min-width: 600px) {
+		flex-direction: row;
+	}
+}
