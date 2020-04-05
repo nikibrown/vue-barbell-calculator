@@ -1,4 +1,9 @@
-@import "colors";
+@import url("https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css");
+@import url("https://fonts.googleapis.com/css2?family=Heebo:wght@300;500;900&display=swap");
 
-@import url('https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css');
-@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;500;900&display=swap');
+@import "colors";
+@import "structure";
+@import "header";
+@import "buttons";
+@import "plates";
+@import "footer";
