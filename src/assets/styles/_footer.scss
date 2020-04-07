@@ -32,24 +32,3 @@ footer {
 		display: inline;
 	}
 }
-
-.fa-info-circle {
-	&:hover {
-		color: darken($white, 10%);
-		cursor: pointer;
-	}
-}
-
-#info {
-	display: none;
-	font-weight: 300;
-	margin: 20px 0 20px 0;
-
-	&.show {
-		display: block;
-	}
-
-	a {
-		text-decoration: underline;
-	}
-}
