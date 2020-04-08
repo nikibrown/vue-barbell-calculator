@@ -1,25 +1,9 @@
 <template>
-	<div id="app" :class="pounds ? 'pounds' : 'kilos'">
-		<header id="settings" :class="showSettings ? 'show' : ''">
+	<div id="app" :class="settings.pounds ? 'pounds' : 'kilos'">
+		<header id="info" :class="settings.showInfo ? 'show' : ''">
 			<nav class="navbar navbar-dark bg-dark">
 				<div class="app-container">
-					<h5>{{ weightSystem }}</h5>
-					<div
-						class="unit-group"
-						role="group"
-						aria-label="Pounds or Kilos"
-					>
-						<Unit
-							v-for="(unit, key) in units"
-							@click="selectUnits(key)"
-							:class="unit.bsClasses"
-							:disabled="unit.isDisabled"
-							:key="key"
-							:text="unit.text"
-							:selected="unit.selected"
-							:unitLabel="unit.unitLabel"
-						/>
-					</div>
+					<p v-html="textContent.moreInfo"></p>
 				</div>
 			</nav>
 		</header>
@@ -27,14 +11,10 @@
 			<nav class="navbar navbar-dark navbar-main">
 				<div class="app-container justify-content-between">
 					<h1 class="navbar-brand">
-						<span class="navbar-brand">{{ appTitle }}</span>
+						<span class="navbar-brand">{{ textContent.appTitle }}</span>
 					</h1>
-					<button
-						@click="toggleSettings"
-						class="btn btn-link"
-						type="button"
-					>
-						<i class="fas fa-cog"></i>
+					<button @click="toggleInfo" class="btn btn-link" type="button">
+						<i class="fas fa-info-circle"></i>
 					</button>
 				</div>
 			</nav>
@@ -43,33 +23,40 @@
 			<div class="total-weight">
 				<div class="app-container justify-content-between">
 					<nav class="navbar navbar-light navbar-total-weight">
-						<h1 class="">
-							{{ totalWeight }}
-							<span v-if="pounds">lb</span>
+						<h1 class>
+							{{ settings.totalWeight }}
+							<span v-if="settings.pounds">lb</span>
 							<span v-else>kg</span>
 						</h1>
 
-						<button
-							@click="resetTotalWeight"
-							class="btn btn-secondary btn-danger btn-sm"
-						>
+						<button @click="resetTotalWeight" class="btn btn-secondary btn-danger btn-sm">
 							<i class="fas fa-undo"></i>
 						</button>
 					</nav>
 				</div>
 			</div>
 			<div class="app-container">
-				<h5>{{ barbellHeadline }}</h5>
-				<p v-if="barbellError" class="error">{{ barbellErrorText }}</p>
+				<h5>{{ textContent.unitsHeadline }}</h5>
+
+				<div class="unit-group" role="group" aria-label="Pounds or Kilos">
+					<Unit
+						v-for="(unit, key) in unitItems"
+						@click="selectUnits(key)"
+						:class="unit.bsClasses"
+						:disabled="unit.isDisabled"
+						:key="key"
+						:text="unit.text"
+						:selected="unit.selected"
+						:unitLabel="unit.unitLabel"
+					/>
+				</div>
+				<h5>{{ textContent.barbellHeadline }}</h5>
+				<p v-if="settings.barbellError" class="error">{{ textContent.barbellErrorText }}</p>
 				<div class="form-group">
 					<ul class="barbells">
-						<div
-							class="barbell-group"
-							role="group"
-							aria-label="Select barbell weight"
-						>
+						<div class="barbell-group" role="group" aria-label="Select barbell weight">
 							<Barbell
-								v-for="(barbell, key) in barbells"
+								v-for="(barbell, key) in barbellItems"
 								:class="barbell.bsClasses"
 								@click="addBarbellWeight(key)"
 								:disabled="barbell.isDisabled"
@@ -82,7 +69,7 @@
 					</ul>
 				</div>
 
-				<h5>{{ platesHeadline }}</h5>
+				<h5>{{ textContent.platesHeadline }}</h5>
 
 				<div class="form-group">
 					<ul class="plates large-plates">
@@ -115,40 +102,7 @@
 		<footer>
 			<nav class="navbar navbar-dark">
 				<div class="app-container">
-					<p class="credits">
-						<span>Made with: </span>
-						<span>
-							<i class="fab fa-vuejs"></i>
-						</span>
-						<span>
-							<a
-								href="https://github.com/nikibrown/vue-barbell-calculator"
-								target="_blank"
-							>
-								<i class="fab fa-github"></i>
-							</a>
-						</span>
-						<span>
-							<i
-								@click="toggleInfo"
-								class="fas fa-info-circle"
-							></i>
-						</span>
-					</p>
-
-					<p id="info" :class="showInfo ? 'show' : ''">
-						Barbell calculator is a made by
-						<a href="https://nikibrown.com" target="_blank"
-							>Niki Brown</a
-						>. If you find an issue or have a feature request please
-						feel free to open a
-						<a
-							href="https://github.com/nikibrown/vue-barbell-calculator/issues"
-							target="_blank"
-							>github issue</a
-						>
-						or fork and make a pull request.
-					</p>
+					<p class="credits" v-html="textContent.madeWidth"></p>
 				</div>
 			</nav>
 		</footer>
@@ -156,312 +110,167 @@
 </template>
 
 <script>
-	import Unit from "./components/Unit.vue";
-	import Barbell from "./components/Barbell.vue";
-	import Plate from "./components/Plate.vue";
+import Unit from "@/components/Unit.vue";
+import Barbell from "@/components/Barbell.vue";
+import Plate from "@/components/Plate.vue";
 
-	export default {
-		name: "App",
-		components: {
-			Unit,
-			Plate,
-			Barbell,
-		},
-		data: function () {
-			return {
-				appTitle: "Barbell Calculator",
-				weightSystem: "Units of Measurement",
-				barbellHeadline: "Barbells",
-				barbellError: false,
-				barbellErrorText: "Please select a barbell first!",
-				platesHeadline: "Plates",
-				platesSubHeadline:
-					"Only count weight on one side of the bar, we do the math! (x 2). Unless you want to unevenly load the bar, but why would you do that???",
-				barbellSelected: false,
-				unitsSelected: false,
-				pounds: true,
-				kilos: false,
-				showSettings: false,
-				showInfo: false,
+import { unitItems } from "@/data/units";
+import { barbellItems } from "@/data/barbells";
+import { largePlates, smallPlates } from "@/data/plates";
+import { textContent } from "@/data/textContent";
+import { settings } from "@/data/settings";
 
-				units: [
-					{
-						bsClasses: "btn btn-sm btn-secondary btn-lg",
-						unitLabel: "Pounds",
-						text: "&check; ",
-						selected: true,
-						isDisabled: false,
-					},
-					{
-						bsClasses: "btn btn-sm btn-secondary btn-lg    ",
-						unitLabel: "Kilos",
-						text: "",
-						selected: false,
-						isDisabled: false,
-					},
-				],
+export default {
+	name: "App",
+	components: {
+		Unit,
+		Plate,
+		Barbell
+	},
+	data: function() {
+		return {
+			unitItems,
+			barbellItems,
+			largePlates,
+			smallPlates,
+			textContent,
+			settings
+		};
+	},
 
-				barbells: [
-					{
-						// TODO: make bsClasses an array to loop through?
-						kiloWeight: 20,
-						poundWeight: 45,
-						text: "",
-						isDisabled: false,
-						bsClasses:
-							"btn btn-lg btn-barbell btn-secondary barbell-45",
-					},
-					{
-						kiloWeight: 15,
-						poundWeight: 35,
-						text: "",
-						isDisabled: false,
-						bsClasses:
-							"btn btn-lg btn-barbell btn-secondary barbell-35",
-					},
-					{
-						kiloWeight: 6.8,
-						poundWeight: 15,
-						text: "",
-						isDisabled: false,
-						bsClasses:
-							"btn btn-lg btn-barbell btn-secondary barbell-15",
-					},
-				],
+	methods: {
+		// TODO: Add method to make totalWeight an array and push values to it and then reduce?
 
-				largePlates: [
-					{
-						bsClasses:
-							"btn btn-plate weight-lg pound-weight-55 kilo-weight-25",
-						poundWeight: 55,
-						kiloWeight: 25,
-						plateCount: 0,
-						isOnBarbell: false,
-					},
-					{
-						bsClasses:
-							"btn btn-plate weight-lg pound-weight-45 kilo-weight-20",
-						poundWeight: 45,
-						kiloWeight: 20,
-						plateCount: 0,
-						isOnBarbell: false,
-					},
-					{
-						bsClasses:
-							"btn btn-plate weight-lg pound-weight-35 kilo-weight-15",
-						poundWeight: 35,
-						kiloWeight: 15,
-						plateCount: 0,
-						isOnBarbell: false,
-					},
-					{
-						bsClasses:
-							"btn btn-plate weight-lg pound-weight-25 kilo-weight-10",
-						poundWeight: 25,
-						kiloWeight: 10,
-						plateCount: 0,
-						isOnBarbell: false,
-					},
-					{
-						bsClasses:
-							"btn btn-plate weight-lg pound-weight-15 kilo-weight-hide",
-						poundWeight: 15,
-						kiloWeight: 0,
-						plateCount: 0,
-						isOnBarbell: false,
-					},
-					{
-						bsClasses:
-							"btn btn-plate weight-lg pound-weight-10 kilo-weight-hide",
-						poundWeight: 10,
-						kiloWeight: 0,
-						plateCount: 0,
-						isOnBarbell: false,
-					},
-				],
-
-				smallPlates: [
-					{
-						bsClasses: "btn btn-plate weight-sm",
-						poundWeight: 5,
-						kiloWeight: 5,
-						plateCount: 0,
-						isOnBarbell: false,
-					},
-					{
-						bsClasses: "btn btn-plate weight-sm",
-						poundWeight: 2.5,
-						kiloWeight: 2.5,
-						plateCount: 0,
-						isOnBarbell: false,
-					},
-					{
-						bsClasses: "btn btn-plate weight-sm",
-						poundWeight: 1,
-						kiloWeight: 2,
-						plateCount: 0,
-						isOnBarbell: false,
-					},
-					{
-						bsClasses: "btn btn-plate weight-sm",
-						poundWeight: 0.75,
-						kiloWeight: 1.5,
-						plateCount: 0,
-						isOnBarbell: false,
-					},
-					{
-						bsClasses: "btn btn-plate weight-sm",
-						poundWeight: 0.5,
-						kiloWeight: 1,
-						plateCount: 0,
-						isOnBarbell: false,
-					},
-					{
-						bsClasses: "btn btn-plate weight-sm",
-						poundWeight: 0.25,
-						kiloWeight: 0.5,
-						plateCount: 0,
-						isOnBarbell: false,
-					},
-				],
-
-				totalWeight: 0,
-			};
+		toggleInfo() {
+			this.settings.showInfo = !this.settings.showInfo;
 		},
 
-		methods: {
-			// TODO: Add method to make totalWeight an array and push values to it and then reduce?
-
-			toggleSettings() {
-				this.showSettings = !this.showSettings;
-			},
-
-			toggleInfo() {
-				this.showInfo = !this.showInfo;
-			},
-
-			selectUnits(key) {
-				if (this.units[key].unitLabel == "Pounds") {
-					this.pounds = true;
-					this.kilos = false;
-					this.disableUnitlButton();
-				} else {
-					this.pounds = false;
-					this.kilos = true;
-					this.disableUnitlButton();
-				}
-
-				this.unitsSelected = true;
-
-				// remove all checks
-				this.units.forEach((unit) => {
-					unit.text = "";
-				});
-
-				//  then add checks to unitBtn clicked
-				this.units[key].text += "&check;";
-			},
-
-			addBarbellWeight(key) {
-				this.barbellSelected = true;
-				this.barbellError = false;
-				this.barbells[key].text += "&check;";
-				this.disableBarbellButton();
+		selectUnits(key) {
+			if (this.unitItems[key].unitLabel == "Pounds") {
+				this.settings.pounds = true;
+				this.settings.kilos = false;
 				this.disableUnitlButton();
-				if (this.pounds) {
-					return (this.totalWeight += this.barbells[key].poundWeight);
-				} else {
-					return (this.totalWeight += this.barbells[key].kiloWeight);
-				}
-			},
+			} else {
+				this.settings.pounds = false;
+				this.settings.kilos = true;
+				this.disableUnitlButton();
+			}
 
-			disableBarbellButton() {
-				this.barbells.forEach((barbell) => {
-					barbell.isDisabled = true;
-				});
-			},
+			this.settings.unitsSelected = true;
 
-			disableUnitlButton() {
-				this.units.forEach((unit) => {
-					unit.isDisabled = true;
-				});
-			},
+			// remove all checks
+			this.unitItems.forEach(unit => {
+				unit.text = "";
+			});
 
-			addSmallPlateWeight(key) {
-				if (this.barbellSelected) {
-					this.updateSmallPlateCount(key);
-					if (this.pounds) {
-						return (this.totalWeight +=
-							this.smallPlates[key].poundWeight * 2);
-					} else {
-						return (this.totalWeight +=
-							this.smallPlates[key].kiloWeight * 2);
-					}
-				} else {
-					this.barbellError = !this.barbellError;
-				}
-			},
-
-			updateSmallPlateCount(key) {
-				this.smallPlates[key].isOnBarbell = true;
-				return (this.smallPlates[key].plateCount += 2);
-			},
-
-			addLargePlateWeight(key) {
-				if (this.barbellSelected) {
-					this.updateLargePlateCount(key);
-					if (this.pounds) {
-						return (this.totalWeight +=
-							this.largePlates[key].poundWeight * 2);
-					} else {
-						return (this.totalWeight +=
-							this.largePlates[key].kiloWeight * 2);
-					}
-				} else {
-					this.barbellError = !this.barbellError;
-				}
-			},
-
-			updateLargePlateCount(key) {
-				this.largePlates[key].isOnBarbell = true;
-				return (this.largePlates[key].plateCount += 2);
-			},
-
-			// TODO: refactor to have 1 add weight function and 1 updatePlate count function. Not sure if it makes sense to have seperate functions vs if/ese in 1 function.
-
-			resetTotalWeight() {
-				this.barbellSelected = false;
-				this.unitsSelected = false;
-
-				this.kilos = false;
-				this.pounds = true;
-
-				this.units.forEach((unit) => {
-					unit.isDisabled = false;
-					unit.text = "";
-				});
-
-				this.units[0].text = "&check; ";
-
-				this.smallPlates.forEach((plate) => {
-					plate.plateCount = 0;
-					plate.isOnBarbell = false;
-				});
-
-				this.largePlates.forEach((plate) => {
-					plate.plateCount = 0;
-					plate.isOnBarbell = false;
-				});
-
-				this.barbells.forEach((barbell) => {
-					barbell.isDisabled = false;
-					barbell.text = "";
-				});
-
-				return (this.totalWeight = 0);
-			},
+			//  then add checks to unitBtn clicked
+			this.unitItems[key].text += "&check;";
 		},
-	};
+
+		addBarbellWeight(key) {
+			this.settings.barbellSelected = true;
+			this.settings.barbellError = false;
+			this.barbellItems[key].text += "&check;";
+			this.disableBarbellButton();
+			this.disableUnitlButton();
+			if (this.settings.pounds) {
+				return (this.settings.totalWeight += this.barbellItems[
+					key
+				].poundWeight);
+			} else {
+				return (this.settings.totalWeight += this.barbellItems[
+					key
+				].kiloWeight);
+			}
+		},
+
+		disableBarbellButton() {
+			this.barbellItems.forEach(barbell => {
+				barbell.isDisabled = true;
+			});
+		},
+
+		disableUnitlButton() {
+			this.unitItems.forEach(unit => {
+				unit.isDisabled = true;
+			});
+		},
+
+		addSmallPlateWeight(key) {
+			if (this.settings.barbellSelected) {
+				this.updateSmallPlateCount(key);
+				if (this.settings.pounds) {
+					return (this.settings.totalWeight +=
+						this.smallPlates[key].poundWeight * 2);
+				} else {
+					return (this.settings.totalWeight +=
+						this.smallPlates[key].kiloWeight * 2);
+				}
+			} else {
+				this.settings.barbellError = !this.settings.barbellError;
+			}
+		},
+
+		updateSmallPlateCount(key) {
+			this.smallPlates[key].isOnBarbell = true;
+			return (this.smallPlates[key].plateCount += 2);
+		},
+
+		addLargePlateWeight(key) {
+			if (this.settings.barbellSelected) {
+				this.updateLargePlateCount(key);
+				if (this.settings.pounds) {
+					return (this.settings.totalWeight +=
+						this.largePlates[key].poundWeight * 2);
+				} else {
+					return (this.settings.totalWeight +=
+						this.largePlates[key].kiloWeight * 2);
+				}
+			} else {
+				this.settings.barbellError = !this.settings.barbellError;
+			}
+		},
+
+		updateLargePlateCount(key) {
+			this.largePlates[key].isOnBarbell = true;
+			return (this.largePlates[key].plateCount += 2);
+		},
+
+		// TODO: refactor to have 1 add weight function and 1 updatePlate count function. Not sure if it makes sense to have seperate functions vs if/ese in 1 function.
+
+		resetTotalWeight() {
+			this.settings.barbellSelected = false;
+			this.settings.unitsSelected = false;
+
+			this.settings.kilos = false;
+			this.settings.pounds = true;
+
+			this.unitItems.forEach(unit => {
+				unit.isDisabled = false;
+				unit.text = "";
+			});
+
+			this.unitItems[0].text = "&check; ";
+
+			this.smallPlates.forEach(plate => {
+				plate.plateCount = 0;
+				plate.isOnBarbell = false;
+			});
+
+			this.largePlates.forEach(plate => {
+				plate.plateCount = 0;
+				plate.isOnBarbell = false;
+			});
+
+			this.barbellItems.forEach(barbell => {
+				barbell.isDisabled = false;
+				barbell.text = "";
+			});
+
+			return (this.settings.totalWeight = 0);
+		}
+	}
+};
 </script>
 
 <style lang="scss">
