@@ -129,6 +129,7 @@ export default {
 	},
 	data: function() {
 		return {
+
 			unitItems,
 			barbellItems,
 			largePlates,
@@ -181,11 +182,13 @@ export default {
 				return (this.settings.totalWeight += this.barbellItems[
 					key
 				].kiloWeight);
+
 			}
 		},
 
 		disableBarbellButton() {
 			this.barbellItems.forEach(barbell => {
+
 				barbell.isDisabled = true;
 			});
 		},
