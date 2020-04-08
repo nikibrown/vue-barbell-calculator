@@ -10,7 +10,7 @@ export const textContent = {
 							</a>
 						</span>
 						`,
-	moreInfo: `Barbell calculator is a made by
+	moreInfo: `💪 Barbell calculator is a made by
                 <a href="https://nikibrown.com" target="_blank">Niki Brown</a>. If you find an issue or have a feature request please
                 feel free to open a
                 <a
