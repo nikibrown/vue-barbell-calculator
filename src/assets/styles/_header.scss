@@ -1,8 +1,15 @@
+.fa-info-circle {
+	&:hover {
+		color: darken($white, 10%);
+		cursor: pointer;
+	}
+}
+
 #info {
-	background-color: $blueGray;
 	color: $white;
 	display: none;
-	padding: 20px 0 20px 0;
+	font-weight: 300;
+
 	&.show {
 		display: block;
 	}
@@ -11,19 +18,8 @@
 		color: $white;
 		text-decoration: underline;
 		&:hover {
-			color: darken($white, 10%);
+			color: darken($white, 20%);
 		}
-	}
-
-	p {
-		font-weight: 300;
-	}
-}
-
-.fa-info-circle {
-	&:hover {
-		color: darken($white, 10%);
-		cursor: pointer;
 	}
 }
 
