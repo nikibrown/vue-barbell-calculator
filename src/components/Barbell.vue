@@ -1,11 +1,11 @@
 <template>
 	<button @click="emitClick" :disabled="isDisabled">
 		<span v-html="text"></span>
-		<span v-if="$parent.settings.pounds" class="weight">
+		<span class="weight weight-pounds">
 			{{ poundWeight }}
 			<span class="weight-label">lb</span>
 		</span>
-		<span v-if="$parent.settings.kilos" class="weight">
+		<span class="weight weight-kilos">
 			{{ kiloWeight }}
 			<span class="weight-label">kg</span>
 		</span>
