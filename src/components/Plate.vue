@@ -1,10 +1,10 @@
 <template>
 	<button @click="emitClick">
-		<span v-if="$parent.settings.pounds" class="weight">
+		<span class="weight weight-pounds">
 			{{ bullshitNumberFormating(poundWeight) }}
 			<span class="weight-label">lb</span>
 		</span>
-		<span v-if="$parent.settings.kilos" class="weight">
+		<span class="weight weight-kilos">
 			{{ bullshitNumberFormating(kiloWeight) }}
 			<span class="weight-label">kg</span>
 		</span>
