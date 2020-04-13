@@ -2,13 +2,13 @@ export const unitsHeadline = "Units of Measurement";
 
 export const unitItems = [
 	{
-		bsClasses: "btn btn-sm btn-secondary btn-lg unit-pounds",
+		bsClasses: "btn btn-md btn-secondary unit-pounds",
 		unitLabel: "Pounds",
 		selected: true,
 		isDisabled: false
 	},
 	{
-		bsClasses: "btn btn-sm btn-secondary btn-lg unit-kilos",
+		bsClasses: "btn btn-md btn-secondary unit-kilos",
 		unitLabel: "Kilos",
 		selected: false,
 		isDisabled: false
