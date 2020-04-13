@@ -60,10 +60,30 @@
 	.weight-pounds {
 		display: none;
 	}
+
+	.unit-pounds {
+		.unit-selected {
+			display: none;
+		}
+	}
+
+	.total-weight-pounds {
+		display: none;
+	}
 }
 
 .pounds {
 	.weight-kilos {
+		display: none;
+	}
+
+	.unit-kilos {
+		.unit-selected {
+			display: none;
+		}
+	}
+
+	.total-weight-kilos {
 		display: none;
 	}
 }

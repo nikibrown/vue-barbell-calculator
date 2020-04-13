@@ -2,17 +2,15 @@ export const unitsHeadline = "Units of Measurement";
 
 export const unitItems = [
 	{
-		bsClasses: "btn btn-sm btn-secondary btn-lg",
+		bsClasses: "btn btn-sm btn-secondary btn-lg unit-pounds",
 		unitLabel: "Pounds",
-		text: "&check; ",
 		selected: true,
-		isDisabled: false,
+		isDisabled: false
 	},
 	{
-		bsClasses: "btn btn-sm btn-secondary btn-lg    ",
+		bsClasses: "btn btn-sm btn-secondary btn-lg unit-kilos",
 		unitLabel: "Kilos",
-		text: "",
 		selected: false,
-		isDisabled: false,
-	},
+		isDisabled: false
+	}
 ];

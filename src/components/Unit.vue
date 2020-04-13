@@ -1,7 +1,7 @@
 <template>
 	<button @click="emitClick">
-		<span v-html="text"></span>
-		<span>{{ unitLabel }}</span>
+		<span class="unit-selected">&check;</span>
+		<span> {{ unitLabel }}</span>
 	</button>
 </template>
 
@@ -10,32 +10,28 @@
 		name: "Unit",
 
 		methods: {
-			emitClick: function () {
+			emitClick: function() {
 				this.$emit("click");
-			},
+			}
 		},
 
 		props: {
 			unitLabel: {
 				type: String,
-				required: true,
-			},
-			text: {
-				type: String,
-				required: true,
+				required: true
 			},
 			selected: {
 				type: Boolean,
-				required: false,
+				required: false
 			},
 			bsClasses: {
 				type: String,
-				default: "btn btn-secondary",
+				default: "btn btn-secondary"
 			},
 			isDisabled: {
 				type: Boolean,
-				default: false,
-			},
-		},
+				default: false
+			}
+		}
 	};
 </script>
