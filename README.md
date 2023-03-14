@@ -1,24 +1,3 @@
-# Vue Barbell Calculator
+# Barbell Calculator
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+I am bad at math. I am especially bad at barbell math. So I made this. 💪
